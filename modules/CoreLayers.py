@@ -71,6 +71,8 @@ class LayerNormalization(nn.Module):
 
     We essentially need to learn 2 parameters, gamma and beta, as essentially, we are performing a covariate shift.
     """
+
+    # noinspection PyArgumentList
     def __init__(self, d_model, epsilon=1e-6):
         """
         Inputs:
