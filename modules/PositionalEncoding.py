@@ -11,6 +11,8 @@ class PositionalEncoding(nn.Module):
         """
         Input:
             d_model: the dimensionality of the outputs <hyperparameter>
+            set_seq_len: the longest sequence we ever have to process for pre-computation of the positional information
+            device: device which operations are performed on
         """
         super(PositionalEncoding, self).__init__()
         self.d_model = d_model
@@ -25,7 +27,10 @@ class PositionalEncoding(nn.Module):
         # seq_len of the batch
         self.precomputed_pos_encoding = None
         if set_seq_len is not None:
-            self.precomputed_pos_encoding = self.get_positional_encoding(set_seq_len, device=device)
+            # we do not want to register this as learn-able parameter of the architecture, thus we use
+            # register_buffer to register this as an attribute of the class but not something the optimizer needs to
+            # change
+            self.register_buffer("precomputed_pos_encoding", self.get_positional_encoding(set_seq_len, device=device))
 
     def compute_angles(self, positions, dimensions):
         """
