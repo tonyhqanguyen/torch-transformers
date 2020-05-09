@@ -122,7 +122,7 @@ class MultiHeadAttention(nn.Module):
             f"num_heads: {num_heads}"
         super(MultiHeadAttention, self).__init__()
 
-        self.d_head = num_heads // d_model
+        self.d_head = d_model // num_heads
 
         # we need to learn the projections for the query, key and value
         # representations into num_heads subspaces this is part of the attention

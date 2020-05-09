@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import numpy as np
+from typing import Any
 from .Encoding import Encoder
 from .Decoding import Decoder
 from .PositionalEncoding import PositionalEncoding
@@ -239,3 +240,9 @@ class Transformer(nn.Module):
         decoder_outputs = self.decode(decoded_outputs, encoder_outputs)
 
         return decoder_outputs
+
+    def __call__(self, *args, **kwargs) -> Any:
+        """
+        This method is to simply suppress PyCharm warnings.
+        """
+        return super().__call__(*args, **kwargs)
