@@ -1,2 +1,5 @@
 # torch-transformer
-An implementation of the Transformer as presented by the paper "Attention is All You Need"
+Transformer based architectures
+
+Currently in the repo:
+- The Transformer from the paper "Attention is All You Need"
